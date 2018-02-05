@@ -1,0 +1,32 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "Service responsible for gathering data from the exchanges and provide for the platform.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crypsense/crawler.git"
+  },
+  "keywords": [
+    "crypsense",
+    "crawler",
+    "cryptocurrency",
+    "trading-bot",
+    "trading-strategies"
+  ],
+  "author": "João Fernandes <ojoaofernandes@gmail.com> (https://linkedin.com/in/ojoaofernandes)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crypsense/crawler/issues"
+  },
+  "homepage": "https://github.com/crypsense/crawler#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
