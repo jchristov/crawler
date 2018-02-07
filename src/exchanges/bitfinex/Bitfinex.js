@@ -17,12 +17,14 @@ class Bitfinex {
   }
 
   ticker({ pair }) {
+    const payload = {
+      event: 'subscribe',
+      channel: 'ticker',
+      symbol: `t${pair}`,
+    };
+
     this.websocket.on('open', () => {
-      this.websocket.send(JSON.stringify({
-        event: 'subscribe',
-        channel: 'ticker',
-        symbol: `t${pair}`,
-      }));
+      this.websocket.send(JSON.stringify(payload));
     });
   }
 }
