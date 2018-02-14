@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const Channel = require('./models/Channel');
 const Message = require('./models/Message');
 const Tick = require('./models/Tick');
 
@@ -31,11 +32,7 @@ class Bitfinex {
       const msg = new Message(message);
 
       if (msg.type === 'subscription' && msg.parsed.channel === 'ticker') {
-        this.channels.push({
-          id: msg.parsed.chanId,
-          topic: msg.parsed.channel,
-          pair: msg.parsed.pair,
-        });
+        this.channels.push(new Channel(msg.parsed));
       }
 
       if (msg.type === 'data') {
