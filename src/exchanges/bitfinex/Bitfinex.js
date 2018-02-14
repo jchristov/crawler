@@ -1,3 +1,4 @@
+const EventEmmiter = require('events');
 const WebSocket = require('ws');
 const Channel = require('./models/Channel');
 const Message = require('./models/Message');
@@ -5,8 +6,9 @@ const Tick = require('./models/Tick');
 
 const URL = 'wss://api.bitfinex.com/ws/2';
 
-class Bitfinex {
+class Bitfinex extends EventEmmiter {
   constructor() {
+    super();
     this.websocket = new WebSocket(URL);
     this.channels = [];
   }
@@ -25,7 +27,7 @@ class Bitfinex {
 
   start() {
     this.websocket.on('error', (err) => {
-      console.log(`Error: ${err}`);
+      console.error(`Error bitfinex ws: ${err}`);
     });
 
     this.websocket.on('message', (message) => {
@@ -40,7 +42,7 @@ class Bitfinex {
 
         if (channel.topic === 'ticker') {
           const tick = new Tick(msg.parsed[1], channel.pair);
-          console.log(tick);
+          this.emit('ticker', tick);
         }
       }
     });

@@ -13,27 +13,29 @@ class Producer {
     });
 
     this.producer.on('error', (err) => {
-      console.error(`Error: ${err}`);
+      console.error(`Error producer: ${err}`);
     });
   }
 
   listen(exchangeClient) {
-    // todo
+    exchangeClient.on('ticker', (tick) => {
+      this.publish('price.update', tick);
+    });
   }
 
-  publish(topic, message) {
+  publish(topic, msg) {
     if (!this.isReady) {
-      console.log('Producer is not ready yet.');
+      console.error('Producer is not ready yet.');
       return;
     }
 
     const payload = {
       topic,
-      messages: message,
+      messages: msg,
     };
 
     this.producer.send([payload], (err) => {
-      if (err) console.log(err);
+      if (err) console.log(`Error producer.publish: ${err}`);
     });
   }
 }
