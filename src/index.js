@@ -11,7 +11,7 @@ const address = {
 const producer = new Producer(address);
 const bitfinex = new exchanges.Bitfinex();
 
-// Subscribe to the Bitfinex ticker channel to receive ticks from the
+// Subscribes to the Bitfinex ticker channel to receive ticks from the
 // Bitcoin / Dollar pair.
 bitfinex.ticker({ pair: 'BTCUSD' });
 

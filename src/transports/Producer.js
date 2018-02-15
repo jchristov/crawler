@@ -19,7 +19,7 @@ class Producer {
 
   listen(exchangeClient) {
     exchangeClient.on('ticker', (tick) => {
-      this.publish('price.update', tick);
+      this.publish('price.update', JSON.stringify(tick));
     });
   }
 
